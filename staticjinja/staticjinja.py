@@ -145,11 +145,12 @@ class Renderer(object):
 
         Ignored files are neither rendered nor used in rendering templates.
 
-        A file is considered ignored if it is prefixed with an ``'.'``.
+        A file is considered ignored if it is prefixed with a dot (Unix-style),
+        or ends in capitals `.TMP` (Windows-style temporary files).
 
         :param filename: the name of the file to check
         """
-        return os.path.basename(filename).startswith('.')
+        return os.path.basename(filename).startswith('.') or filename.endswith('.TMP')
 
     def is_template(self, filename):
         """Check if a file is a template.
